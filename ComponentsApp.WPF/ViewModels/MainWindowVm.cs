@@ -139,11 +139,11 @@ namespace ComponentsApp.WPF.ViewModels
                     {
                         if (SamplePoint1.Volume == 0)
                         {
-                            MessageBox.Show("Объем для точки отбора №1 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Объем газа для точки отбора №1 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else if (SamplePoint2.Volume == 0)
                         {
-                            MessageBox.Show("Объем для точки отбора №2 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Объем газа для точки отбора №2 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else if (!SamplePoint1.Samples.All(s => s.Summ == 100.0m))
                         {
@@ -159,9 +159,10 @@ namespace ComponentsApp.WPF.ViewModels
 
                             var result = calculation.Calculate(SamplePoint1, SamplePoint2);
 
-                            var resultWindow = new ResultWindow();
-
-                            resultWindow.DataContext = new ResultWindowVm { ResultData = result };
+                            var resultWindow = new ResultWindow
+                            {
+                                DataContext = new ResultWindowVm { ResultData = result }
+                            };
 
                             resultWindow.ShowDialog();
                         }
