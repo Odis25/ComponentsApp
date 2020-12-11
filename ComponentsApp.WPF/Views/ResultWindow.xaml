@@ -14,13 +14,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="497*"/>
-            <ColumnDefinition Width="404*"/>
-            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <materialDesign:Card Grid.Row="0" Grid.ColumnSpan="3" Margin="5" Padding="10" Background="#FF2196F3" Foreground="White">
             <TextBlock Text="Результаты расчета средневзвешенного содержания компонентов" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
@@ -533,5 +533,9 @@
                 </Grid>
             </Border>
         </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Content="Сохранить в PDF" Command="{Binding SaveToPdfCommand}"></Button>
+        </StackPanel>
     </Grid>
+    
 </mde:MaterialWindow>

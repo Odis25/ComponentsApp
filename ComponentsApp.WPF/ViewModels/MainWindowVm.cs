@@ -139,19 +139,23 @@ namespace ComponentsApp.WPF.ViewModels
                     {
                         if (SamplePoint1.Volume == 0)
                         {
-                            MessageBox.Show("Объем газа для точки отбора №1 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Объем газа для точки отбора №1 не может быть 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else if (SamplePoint2.Volume == 0)
                         {
-                            MessageBox.Show("Объем газа для точки отбора №2 не может быть 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Объем газа для точки отбора №2 не может быть 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else if (!SamplePoint1.Samples.All(s => s.Summ == 100.0m))
                         {
-                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №1 должна быть 100%", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №1 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else if (!SamplePoint2.Samples.All(s => s.Summ == 100.0m))
                         {
-                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);                            
+                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);                            
+                        }
+                        else if (SamplePoint1.Samples.Any(s => s.Density == 0) || SamplePoint2.Samples.Any(s => s.Density == 0))
+                        {
+                            MessageBox.Show("Плотность каждой из проб должна быть больше 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else
                         {

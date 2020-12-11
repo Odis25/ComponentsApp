@@ -29,5 +29,11 @@ namespace ComponentsApp.WPF.Views
         {
             base.DragMove();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AboutWindow();
+            window.ShowDialog();
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using ComponentsApp.WPF.ViewModels;
 using MaterialDesignExtensions.Controls;
-using System.Windows;
 
 namespace ComponentsApp.WPF.Views
 {
