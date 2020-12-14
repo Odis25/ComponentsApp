@@ -75,7 +75,7 @@ namespace ComponentsApp.WPF.Services
                 NC4H10 = (avgSample1.NC4H10 * volume1 + avgSample2.NC4H10 * volume2) / (volume1 + volume2),
                 IC5H12 = (avgSample1.IC5H12 * volume1 + avgSample2.IC5H12 * volume2) / (volume1 + volume2),
                 NC5H12 = (avgSample1.NC5H12 * volume1 + avgSample2.NC5H12 * volume2) / (volume1 + volume2),
-                C6H14 = (avgSample1.CH4 * volume1 + avgSample2.C6H14 * volume2) / (volume1 + volume2),
+                C6H14 = (avgSample1.C6H14 * volume1 + avgSample2.C6H14 * volume2) / (volume1 + volume2),
                 Density = (avgSample1.Density * volume1 + avgSample2.Density * volume2) / (volume1 + volume2)
             };
         }

@@ -1,17 +1,8 @@
 ﻿using MaterialDesignExtensions.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ComponentsApp.WPF.Views
 {
@@ -27,13 +18,58 @@ namespace ComponentsApp.WPF.Views
 
         private void mainTopPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            base.DragMove();
+            DragMove();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var window = new AboutWindow();
             window.ShowDialog();
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            Regex regex;
+
+            if (tb.Text.Contains("."))
+            {
+                if (tb.SelectedText.Length > 0 && tb.SelectedText.Contains("."))
+                {
+                    regex = new Regex("[^0-9.]+");
+                }
+                else
+                {
+                    regex = new Regex("[^0-9]+");
+                }
+                e.Handled = regex.IsMatch(e.Text);
+            }
+            else
+            {
+                regex = new Regex("[^0-9.]+");
+                e.Handled = regex.IsMatch(e.Text);
+            }
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // MoveFocus takes a TraveralReqest as its argument.
+                var request = new TraversalRequest(FocusNavigationDirection.Next);
+                ((UIElement)sender).MoveFocus(request);
+            }
+
+
+            //// Gets the element with keyboard focus.
+            //UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
+
+            //// Change keyboard focus.
+            //if (elementWithFocus != null)
+            //{
+            //    if (elementWithFocus.MoveFocus(request)) e.Handled = true;
+            //}
+
         }
     }
 }

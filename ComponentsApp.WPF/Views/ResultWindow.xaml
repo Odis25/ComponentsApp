@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:ComponentsApp.WPF.ViewModels" x:Class="ComponentsApp.WPF.Views.ResultWindow"
         mc:Ignorable="d"
-        Title="Результаты вычисления" Height="600" Width="1000" ResizeMode="NoResize">
+        Title="Результаты вычисления" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <mde:MaterialWindow.DataContext>
         <ViewModels:ResultWindowVm/>
     </mde:MaterialWindow.DataContext>
