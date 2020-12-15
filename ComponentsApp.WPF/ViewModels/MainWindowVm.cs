@@ -1,12 +1,11 @@
-﻿using ComponentsApp.WPF.Models;
+﻿using ComponentsApp.WPF.Infrastructure.Commands.Base;
+using ComponentsApp.WPF.Interfaces;
+using ComponentsApp.WPF.Models;
 using ComponentsApp.WPF.Services;
 using ComponentsApp.WPF.ViewModels.Base;
 using ComponentsApp.WPF.Views;
-using ComponentsApp.WPF.Infrastructure.Commands.Base;
-using ComponentsApp.WPF.Interfaces;
 using System.Linq;
 using System.Windows;
-using System.Collections.Generic;
 
 namespace ComponentsApp.WPF.ViewModels
 {
