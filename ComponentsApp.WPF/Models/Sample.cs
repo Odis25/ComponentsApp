@@ -3,6 +3,7 @@ using System;
 
 namespace ComponentsApp.WPF.Models
 {
+    [Serializable]
     public class Sample : ViewModel
     {
         #region Поля

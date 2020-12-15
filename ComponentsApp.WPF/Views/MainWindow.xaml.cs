@@ -55,21 +55,17 @@ namespace ComponentsApp.WPF.Views
         {
             if (e.Key == Key.Enter)
             {
-                // MoveFocus takes a TraveralReqest as its argument.
                 var request = new TraversalRequest(FocusNavigationDirection.Next);
+
                 ((UIElement)sender).MoveFocus(request);
+
+                var element = Keyboard.FocusedElement as TextBox;
+
+                if (element != null)
+                {
+                    element.SelectAll();
+                }
             }
-
-
-            //// Gets the element with keyboard focus.
-            //UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
-
-            //// Change keyboard focus.
-            //if (elementWithFocus != null)
-            //{
-            //    if (elementWithFocus.MoveFocus(request)) e.Handled = true;
-            //}
-
         }
     }
 }

@@ -6,12 +6,16 @@ using ComponentsApp.WPF.Infrastructure.Commands.Base;
 using ComponentsApp.WPF.Interfaces;
 using System.Linq;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace ComponentsApp.WPF.ViewModels
 {
     internal class MainWindowVm : ViewModel
     {
         #region Поля
+        private readonly IFileService _fileService;
+        private readonly ICalculationService _calculationService;
+
 
         private SamplePoint _samplePoint1;
         private SamplePoint _samplePoint2;
@@ -21,6 +25,8 @@ namespace ComponentsApp.WPF.ViewModels
         private RelayCommand _addSampleToSamplePoint2Command;
         private RelayCommand _removeSampleFromSamplePoint2Command;
         private RelayCommand _calculateCommand;
+        private RelayCommand _saveToFileCommand;
+        private RelayCommand _loadFromFileCommand;
         #endregion
 
         #region Свойства
@@ -159,9 +165,7 @@ namespace ComponentsApp.WPF.ViewModels
                         }
                         else
                         {
-                            ICalculationService calculation = new CalculationService();
-
-                            var result = calculation.Calculate(SamplePoint1, SamplePoint2);
+                            var result = _calculationService.Calculate(SamplePoint1, SamplePoint2);
 
                             var resultWindow = new ResultWindow
                             {
@@ -176,12 +180,73 @@ namespace ComponentsApp.WPF.ViewModels
             }
         }
 
+        public RelayCommand SaveToFileCommand
+        {
+            get
+            { 
+                if (_saveToFileCommand == null)
+                {
+                    _saveToFileCommand = new RelayCommand(obj =>
+                    {
+                        var result = _fileService.SaveSamples(new SamplePoint[] { SamplePoint1, SamplePoint2 });
+
+                        if (result)
+                        {
+                            MessageBox.Show("Данные успешно сохранены", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка сохранения", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    });
+                }
+                return _saveToFileCommand;
+            }
+        }
+
+        public RelayCommand LoadFromFileCommand
+        {
+            get
+            {
+                if (_loadFromFileCommand == null)
+                {
+                    _loadFromFileCommand = new RelayCommand(obj =>
+                    {
+                        var result = _fileService.LoadSamples();
+
+                        if (result != null)
+                        {
+                            SamplePoint1 = result[0];
+                            SamplePoint2 = result[1];
+                        }
+                        else
+                        {
+                            MessageBox.Show("Нет сохраненных данных", "Загрузка данных", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    });
+                }
+                return _loadFromFileCommand;
+            }
+        }
         #endregion
 
         internal MainWindowVm()
         {
+            _fileService = new FileService();
+            _calculationService = new CalculationService();
+
             SamplePoint1 = new SamplePoint { Name = "ВГПП ПНГ Сепарация УВКС Е-1/1,2 – Варьеганское, Тагринское и Новоаганское месторождения" };
             SamplePoint2 = new SamplePoint { Name = "ВГПП ПНГ Сепарация Узел №1 – Рославльское и Западно-Варьеганское месторождения" };
+
+            SamplePoint1.Samples.Add(new Sample { SampleNumber = 1 });
+            SamplePoint1.Samples.Add(new Sample { SampleNumber = 2 });
+            SamplePoint1.Samples.Add(new Sample { SampleNumber = 3 });
+            SamplePoint1.Samples.Add(new Sample { SampleNumber = 4 });
+
+            SamplePoint2.Samples.Add(new Sample { SampleNumber = 1 });
+            SamplePoint2.Samples.Add(new Sample { SampleNumber = 2 });
+            SamplePoint2.Samples.Add(new Sample { SampleNumber = 3 });
+            SamplePoint2.Samples.Add(new Sample { SampleNumber = 4 });
         }
     }
 }

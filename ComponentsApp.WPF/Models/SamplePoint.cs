@@ -1,11 +1,12 @@
 ﻿using ComponentsApp.WPF.ViewModels.Base;
+using System;
 using System.Collections.ObjectModel;
 
 namespace ComponentsApp.WPF.Models
 {
+    [Serializable]
     public class SamplePoint : ViewModel
     {
-
         private string _name;
         private double _volume;
         private ObservableCollection<Sample> _samples;
@@ -30,10 +31,10 @@ namespace ComponentsApp.WPF.Models
         {
             _samples = new ObservableCollection<Sample>();
 
-            _samples.Add(new Sample { SampleNumber = 1 });
-            _samples.Add(new Sample { SampleNumber = 2 });
-            _samples.Add(new Sample { SampleNumber = 3 });
-            _samples.Add(new Sample { SampleNumber = 4 });
+            //_samples.Add(new Sample { SampleNumber = 1 });
+            //_samples.Add(new Sample { SampleNumber = 2 });
+            //_samples.Add(new Sample { SampleNumber = 3 });
+            //_samples.Add(new Sample { SampleNumber = 4 });
         }
     }
 }

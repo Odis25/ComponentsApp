@@ -269,7 +269,23 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Grid.Row="0" VerticalAlignment="Top" Margin="20,100" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Click="Button_Click">
+            <Button Grid.Row="0"  VerticalAlignment="Top" Margin="20,100" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding SaveToFileCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="File" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <TextBlock Text="Сохранить данные"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="0"  VerticalAlignment="Top" Margin="20,150" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding LoadFromFileCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="File" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <TextBlock Text="загрузить данные"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Row="1" VerticalAlignment="Top" Margin="20,10" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Click="Button_Click">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="About" Margin="0,0,5,0"></materialDesign:PackIcon>

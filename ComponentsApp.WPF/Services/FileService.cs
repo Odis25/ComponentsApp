@@ -5,6 +5,9 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace ComponentsApp.WPF.Services
 {
@@ -87,7 +90,7 @@ namespace ComponentsApp.WPF.Services
             paragraph.AddText($"Дата создания протокола: {DateTime.Now}");
             paragraph.Format.Font.Size = 9;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-            
+
             // Добавляем заголовок таблицы
             paragraph = section.AddParagraph();
             paragraph.Format.SpaceBefore = "2cm";
@@ -172,7 +175,7 @@ namespace ComponentsApp.WPF.Services
             row.Cells[0].AddParagraph("C3");
             row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
 
-            row.Cells[1].AddParagraph($"{_data.ComponentsQuantityTable.C3:f3}   x   {_data.ComponentsQuantityTable.Density:f4} x 10   =   {_data.ComponentsQuantityTable.QuantityC3:f2}"); 
+            row.Cells[1].AddParagraph($"{_data.ComponentsQuantityTable.C3:f3}   x   {_data.ComponentsQuantityTable.Density:f4} x 10   =   {_data.ComponentsQuantityTable.QuantityC3:f2}");
             row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
             row.Cells[1].MergeRight = 2;
 
@@ -439,6 +442,48 @@ namespace ComponentsApp.WPF.Services
 
             // Set the borders of the specified cell range
             table.SetEdge(0, table.Rows.Count - 9, 4, 9, Edge.Box, BorderStyle.Single, 0.75);
+        }
+
+        public bool SaveSamples(SamplePoint[] samplePoints)
+        {
+            var serializer = new XmlSerializer(typeof(SamplePoint));
+            try
+            {
+                for (int i = 0; i < samplePoints.Length; i++)
+                {
+                    using (var file = new FileStream($"samplepoint_{i + 1}.xml", FileMode.Create))
+                    {
+                        serializer.Serialize(file, samplePoints[i]);
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public SamplePoint[] LoadSamples()
+        {
+            var serializer = new XmlSerializer(typeof(SamplePoint));
+
+            var result = new SamplePoint[2];
+            try
+            {
+                for (int i = 0; i < result.Length; i++)
+                {
+                    using (var file = new FileStream($"samplepoint_{i + 1}.xml", FileMode.Open, FileAccess.Read))
+                    {
+                        result[i] = (SamplePoint)serializer.Deserialize(file);
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                return null;
+            }
+            return result;
         }
     }
 }
