@@ -4,19 +4,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:ComponentsApp.WPF.Views"
-        xmlns:m="clr-namespace:ComponentsApp.WPF.Models"
-        xmlns:ViewModels="clr-namespace:ComponentsApp.WPF.ViewModels" x:Class="ComponentsApp.WPF.Views.InputWindow"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:ComponentsApp.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="ComponentsApp" Height="830" Width="1020" WindowStartupLocation="CenterScreen"
+        x:Class="ComponentsApp.WPF.Views.InputWindow"
+        Title="ComponentsApp" Height="760" Width="1020" WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="Roboto">
     <mde:MaterialWindow.DataContext>
-        <ViewModels:MainWindowVm/>
+        <vm:MainWindowVm/>
     </mde:MaterialWindow.DataContext>
 
     <Grid Background="White">
@@ -30,17 +29,17 @@
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"></RowDefinition>
-                        <RowDefinition MinHeight="540" Height="*"></RowDefinition>
+                        <RowDefinition MinHeight="420" Height="*"></RowDefinition>
                         <RowDefinition Height="70"></RowDefinition>
                     </Grid.RowDefinitions>
                     
                     <!--Заголовок-->
-                    <materialDesign:Card Grid.Row="0" Margin="0,5" Background="#FF2196F3" Foreground="White">
+                    <md:Card Grid.Row="0" Margin="0,5" Background="#FF2196F3" Foreground="White">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" FontWeight="Bold" Text="ВГПП ПНГ Сепарация УВКС Е-1/1,2"></TextBlock>
-                            <TextBlock HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" Text="Варьеганское, Тагринское и Новоаганское месторождения"></TextBlock>
+                            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" FontWeight="Bold" Text="{Binding SamplePoint1.Header}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" Text="{Binding SamplePoint1.SubHeader}"></TextBlock>
                         </StackPanel>
-                    </materialDesign:Card>
+                    </md:Card>
 
                     <!--Панель проб-->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
@@ -51,8 +50,8 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="m:Sample">
-                                    <materialDesign:Card Margin="10,5" >
+                                <DataTemplate DataType="vm:SampleVm">
+                                    <md:Card Margin="10,5" >
                                         <StackPanel TextElement.FontSize="14" TextElement.FontWeight="Bold" Orientation="Vertical">
                                             <StackPanel Background="#FF2196F3">
                                                 <TextBlock HorizontalAlignment="Center" Foreground="White" Padding="0,10" Text="{Binding SampleNumber, StringFormat='Проба №{0}'}"></TextBlock>
@@ -84,36 +83,31 @@
                                                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="O2  -"></TextBlock>
                                                 <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="N2  -"></TextBlock>
                                                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CO2  -"></TextBlock>
-                                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="H  -"></TextBlock>
-                                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="He  -"></TextBlock>
-                                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CH4  -"></TextBlock>
-                                                <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C2H6  -"></TextBlock>
-                                                <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C3H8  -"></TextBlock>
-                                                <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC4H10  -"></TextBlock>
-                                                <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC4H10  -"></TextBlock>
-                                                <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC5H12  -"></TextBlock>
-                                                <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC5H12  -"></TextBlock>
-                                                <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C6H14+  -"></TextBlock>
-                                                <TextBlock Grid.Row="13" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Сумма  -"></TextBlock>
-                                                <TextBlock Grid.Row="13" Grid.Column="1" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,10,0,5"  Text="{Binding Summ, StringFormat=' {0:f5}'}"></TextBlock>
-                                                <TextBlock Grid.Row="14" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Плотность -"></TextBlock>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignTextBox}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding O2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding N2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="2" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding CO2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="3" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding H, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding He, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding CH4, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="6" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C2H6, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C3H8, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="8" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding IC4H10, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="9" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding NC4H10, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="10" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding IC5H12, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="11" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding NC5H12, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="12" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C6H14, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="14" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Density, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CH4  -"></TextBlock>
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C2H6  -"></TextBlock>
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C3H8  -"></TextBlock>
+                                                <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC4H10  -"></TextBlock>
+                                                <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC4H10  -"></TextBlock>
+                                                <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC5H12  -"></TextBlock>
+                                                <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC5H12  -"></TextBlock>
+                                                <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C6H14+  -"></TextBlock>
+                                                <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Сумма  -"></TextBlock>
+                                                <TextBlock Grid.Row="11" Grid.Column="1" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,10,0,5"  Text="{Binding Summ, StringFormat=' {0:f5}'}"></TextBlock>
+                                                <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Плотность -"></TextBlock>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignTextBox}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Oxygen, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Nitrogen, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="2" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.CarbonDioxide, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="3" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Methane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Ethane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Propane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="6" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Isobutane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Butane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="8" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Isopentane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="9" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Pentane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="10" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Hexane, StringFormat= '\{0:f5\}'}"></TextBox>
                                             </Grid>
                                         </StackPanel>
-                                    </materialDesign:Card>
+                                    </md:Card>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -144,17 +138,17 @@
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"></RowDefinition>
-                        <RowDefinition MinHeight="540" Height="*"></RowDefinition>
+                        <RowDefinition MinHeight="420" Height="*"></RowDefinition>
                         <RowDefinition Height="70"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!--Заголовок-->
-                    <materialDesign:Card Grid.Row="0" Margin="0,5" Background="#FF2196F3" Foreground="White">
+                    <md:Card Grid.Row="0" Margin="0,5" Background="#FF2196F3" Foreground="White">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" FontWeight="Bold" Text="ВГПП ПНГ Сепарация Узел №1"></TextBlock>
-                            <TextBlock HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" Text="Рославльское и Западно-Варьеганское месторождения"></TextBlock>
+                            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" FontWeight="Bold" Text="{Binding SamplePoint2.Header}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" Text="{Binding SamplePoint2.SubHeader}"></TextBlock>
                         </StackPanel>
-                    </materialDesign:Card>
+                    </md:Card>
 
                     <!--Панель проб-->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
@@ -165,8 +159,8 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="m:Sample">
-                                    <materialDesign:Card Margin="10,5" >
+                                <DataTemplate DataType="vm:SampleVm">
+                                    <md:Card Margin="10,5" >
                                         <StackPanel TextElement.FontSize="14" TextElement.FontWeight="Bold" Orientation="Vertical">
                                             <StackPanel Background="#FF2196F3">
                                                 <TextBlock HorizontalAlignment="Center" Foreground="White" Padding="0,10" Text="{Binding SampleNumber, StringFormat='Проба №{0}'}"></TextBlock>
@@ -198,36 +192,31 @@
                                                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="O2  -"></TextBlock>
                                                 <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="N2  -"></TextBlock>
                                                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CO2  -"></TextBlock>
-                                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="H  -"></TextBlock>
-                                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="He  -"></TextBlock>
-                                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CH4  -"></TextBlock>
-                                                <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C2H6  -"></TextBlock>
-                                                <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C3H8  -"></TextBlock>
-                                                <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC4H10  -"></TextBlock>
-                                                <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC4H10  -"></TextBlock>
-                                                <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC5H12  -"></TextBlock>
-                                                <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC5H12  -"></TextBlock>
-                                                <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C6H14+  -"></TextBlock>
-                                                <TextBlock Grid.Row="13" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Сумма  -"></TextBlock>
-                                                <TextBlock Grid.Row="13" Grid.Column="1" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,10,0,5"  Text="{Binding Summ, StringFormat=' {0:f5}'}"></TextBlock>
-                                                <TextBlock Grid.Row="14" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Плотность -"></TextBlock>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignTextBox}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding O2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding N2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="2" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding CO2, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="3" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding H, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding He, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding CH4, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="6" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C2H6, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C3H8, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="8" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding IC4H10, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="9" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding NC4H10, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="10" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding IC5H12, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="11" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding NC5H12, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="12" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding C6H14, StringFormat= '\{0:f5\}'}"></TextBox>
-                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="14" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Density, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="CH4  -"></TextBlock>
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C2H6  -"></TextBlock>
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C3H8  -"></TextBlock>
+                                                <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC4H10  -"></TextBlock>
+                                                <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC4H10  -"></TextBlock>
+                                                <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="iC5H12  -"></TextBlock>
+                                                <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="nC5H12  -"></TextBlock>
+                                                <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="C6H14+  -"></TextBlock>
+                                                <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Сумма  -"></TextBlock>
+                                                <TextBlock Grid.Row="11" Grid.Column="1" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,10,0,5"  Text="{Binding Summ, StringFormat=' {0:f5}'}"></TextBlock>
+                                                <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource MaterialDesignDataGridTextColumnStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"  Text="Плотность -"></TextBlock>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignTextBox}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Oxygen, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Nitrogen, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="2" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.CarbonDioxide, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="3" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Methane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="4" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Ethane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="5" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Propane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="6" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Isobutane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="7" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Butane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="8" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Isopentane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="9" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Pentane, StringFormat= '\{0:f5\}'}"></TextBox>
+                                                <TextBox KeyDown="TextBox_KeyDown" PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="10" Grid.Column="1" Style="{StaticResource MaterialDesignTextBoxBase}" FontWeight="Medium" HorizontalAlignment="Left" Margin="10,5,10,0" Text="{Binding Sample.Hexane, StringFormat= '\{0:f5\}'}"></TextBox>
                                             </Grid>
                                         </StackPanel>
-                                    </materialDesign:Card>
+                                    </md:Card>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -264,7 +253,7 @@
             <Button Grid.Row="0"  VerticalAlignment="Top" Margin="20,50" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding CalculateCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Calculator" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <md:PackIcon Kind="Calculator" Margin="0,0,5,0"></md:PackIcon>
                         <TextBlock Text="ВЫЧИСЛИТЬ"></TextBlock>
                     </StackPanel>
                 </Button.Content>
@@ -272,7 +261,7 @@
             <Button Grid.Row="0"  VerticalAlignment="Top" Margin="20,100" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding SaveToFileCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="File" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <md:PackIcon Kind="File" Margin="0,0,5,0"></md:PackIcon>
                         <TextBlock Text="Сохранить данные"></TextBlock>
                     </StackPanel>
                 </Button.Content>
@@ -280,7 +269,7 @@
             <Button Grid.Row="0"  VerticalAlignment="Top" Margin="20,150" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding LoadFromFileCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="File" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <md:PackIcon Kind="File" Margin="0,0,5,0"></md:PackIcon>
                         <TextBlock Text="загрузить данные"></TextBlock>
                     </StackPanel>
                 </Button.Content>
@@ -288,7 +277,7 @@
             <Button Grid.Row="1" VerticalAlignment="Top" Margin="20,10" Height="30" Grid.Column="1" Style="{StaticResource MaterialDesignRaisedButton}" Click="Button_Click">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="About" Margin="0,0,5,0"></materialDesign:PackIcon>
+                        <md:PackIcon Kind="About" Margin="0,0,5,0"></md:PackIcon>
                         <TextBlock Text="О программе"></TextBlock>
                     </StackPanel>
                 </Button.Content>

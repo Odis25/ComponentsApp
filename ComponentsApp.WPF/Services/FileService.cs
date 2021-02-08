@@ -344,101 +344,101 @@ namespace ComponentsApp.WPF.Services
             row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
             row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("C1");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.CH4:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.CH4:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.CH4:f4}");
+            //row.Cells[0].AddParagraph("C1");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.CH4:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.CH4:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.CH4:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("C2");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C2H6:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C2H6:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C2H6:f4}");
+            //row.Cells[0].AddParagraph("C2");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C2H6:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C2H6:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C2H6:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("C3");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C3H8:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C3H8:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C3H8:f4}");
+            //row.Cells[0].AddParagraph("C3");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C3H8:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C3H8:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C3H8:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("iC4");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.IC4H10:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.IC4H10:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.IC4H10:f4}");
+            //row.Cells[0].AddParagraph("iC4");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.IC4H10:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.IC4H10:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.IC4H10:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("nC4");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.NC4H10:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.NC4H10:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.NC4H10:f4}");
+            //row.Cells[0].AddParagraph("nC4");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.NC4H10:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.NC4H10:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.NC4H10:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("iC5");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.IC5H12:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.IC5H12:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.IC5H12:f4}");
+            //row.Cells[0].AddParagraph("iC5");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.IC5H12:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.IC5H12:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.IC5H12:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("nC5");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.NC5H12:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.NC5H12:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.NC5H12:f4}");
+            //row.Cells[0].AddParagraph("nC5");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.NC5H12:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.NC5H12:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.NC5H12:f4}");
 
-            row = table.AddRow();
-            row.TopPadding = 2.5;
-            row.BottomPadding = 2.5;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            //row = table.AddRow();
+            //row.TopPadding = 2.5;
+            //row.BottomPadding = 2.5;
+            //row.Cells[0].VerticalAlignment = VerticalAlignment.Center;
+            //row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            //row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
-            row.Cells[0].AddParagraph("C6+");
-            row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C6H14:f4}");
-            row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C6H14:f4}");
-            row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C6H14:f4}");
+            //row.Cells[0].AddParagraph("C6+");
+            //row.Cells[1].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint1.C6H14:f4}");
+            //row.Cells[2].AddParagraph($"{_data.AvgSamplesTable.AverageSampleFromPoint2.C6H14:f4}");
+            //row.Cells[3].AddParagraph($"{_data.AvgSamplesTable.AverageSampleTotal.C6H14:f4}");
 
             // Set the borders of the specified cell range
             table.SetEdge(0, table.Rows.Count - 9, 4, 9, Edge.Box, BorderStyle.Single, 0.75);

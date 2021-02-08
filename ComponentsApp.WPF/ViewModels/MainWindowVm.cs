@@ -15,9 +15,9 @@ namespace ComponentsApp.WPF.ViewModels
         private readonly IFileService _fileService;
         private readonly ICalculationService _calculationService;
 
+        private SamplePointVm _samplePoint1;
+        private SamplePointVm _samplePoint2;
 
-        private SamplePoint _samplePoint1;
-        private SamplePoint _samplePoint2;
         private RelayCommand _closeApplicationCommand;
         private RelayCommand _addSampleToSamplePoint1Command;
         private RelayCommand _removeSampleFromSamplePoint1Command;
@@ -31,17 +31,14 @@ namespace ComponentsApp.WPF.ViewModels
         #region Свойства
 
         // Коллекция проб с точки отбора №1
-        public SamplePoint SamplePoint1
+        public SamplePointVm SamplePoint1
         {
             get => _samplePoint1;
-            set
-            {
-                Set(ref _samplePoint1, value);
-            }
+            set => Set(ref _samplePoint1, value);
         }
 
         // Коллекция проб с точки отбора №2
-        public SamplePoint SamplePoint2
+        public SamplePointVm SamplePoint2
         {
             get => _samplePoint2;
             set => Set(ref _samplePoint2, value);
@@ -68,15 +65,15 @@ namespace ComponentsApp.WPF.ViewModels
         // Добавить пробу для точки отбора #1
         public RelayCommand AddSampleToSamplePoint1Command
         {
-            get 
+            get
             {
                 if (_addSampleToSamplePoint1Command == null)
                 {
-                    _addSampleToSamplePoint1Command = new RelayCommand(obj => 
-                    { 
-                        var sampleNumber = SamplePoint1.Samples.Count + 1; 
-                        SamplePoint1.Samples.Add(new Sample { SampleNumber = sampleNumber }); 
-                    }, 
+                    _addSampleToSamplePoint1Command = new RelayCommand(obj =>
+                    {
+                        var sampleNumber = SamplePoint1.Samples.Count + 1;
+                        SamplePoint1.Samples.Add(new SampleVm { SampleNumber = sampleNumber });
+                    },
                     c => SamplePoint1.Samples.Count != 10);
                 }
                 return _addSampleToSamplePoint1Command;
@@ -109,7 +106,7 @@ namespace ComponentsApp.WPF.ViewModels
                     _addSampleToSamplePoint2Command = new RelayCommand(obj =>
                     {
                         var sampleNumber = SamplePoint2.Samples.Count + 1;
-                        SamplePoint2.Samples.Add(new Sample { SampleNumber = sampleNumber });
+                        SamplePoint2.Samples.Add(new SampleVm { SampleNumber = sampleNumber });
                     },
                     c => SamplePoint2.Samples.Count != 10);
                 }
@@ -156,24 +153,37 @@ namespace ComponentsApp.WPF.ViewModels
                         }
                         else if (!SamplePoint2.Samples.All(s => s.Summ == 100.0m))
                         {
-                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);                            
+                            MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
-                        else if (SamplePoint1.Samples.Any(s => s.Density == 0) || SamplePoint2.Samples.Any(s => s.Density == 0))
-                        {
-                            MessageBox.Show("Плотность каждой из проб должна быть больше 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
+                        //else if (SamplePoint1.Samples.Any(s => s.Sample.Density == 0) || 
+                        //SamplePoint2.Samples.Any(s => s.Sample.Density == 0))
+                        //{
+                        //    MessageBox.Show("Плотность каждой из проб должна быть больше 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        //}
                         else
                         {
-                            var result = _calculationService.Calculate(SamplePoint1, SamplePoint2);
-
-                            var resultWindow = new ResultWindow
+                            var samplePoint1 = new SamplePoint
                             {
-                                DataContext = new ResultWindowVm { ResultData = result }
+                                Samples = SamplePoint1.Samples.Select(s => s.Sample).ToList(),
+                                Volume = SamplePoint1.Volume
                             };
 
-                            resultWindow.ShowDialog();
+                            var samplePoint2 = new SamplePoint
+                            {
+                                Samples = SamplePoint2.Samples.Select(s => s.Sample).ToList(),
+                                Volume = SamplePoint2.Volume
+                            };
+
+                            var result = _calculationService.Calculate(samplePoint1, samplePoint2);
+
+                            //var resultWindow = new ResultWindow
+                            //{
+                            //    DataContext = new ResultWindowVm { ResultData = result }
+                            //};
+
+                            //resultWindow.ShowDialog();
                         }
-                    });                   
+                    });
                 }
                 return _calculateCommand;
             }
@@ -182,21 +192,21 @@ namespace ComponentsApp.WPF.ViewModels
         public RelayCommand SaveToFileCommand
         {
             get
-            { 
+            {
                 if (_saveToFileCommand == null)
                 {
                     _saveToFileCommand = new RelayCommand(obj =>
                     {
-                        var result = _fileService.SaveSamples(new SamplePoint[] { SamplePoint1, SamplePoint2 });
+                        //var result = _fileService.SaveSamples(new SamplePoint[] { SamplePoint1, SamplePoint2 });
 
-                        if (result)
-                        {
-                            MessageBox.Show("Данные успешно сохранены", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ошибка сохранения", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+                        //if (result)
+                        //{
+                        //    MessageBox.Show("Данные успешно сохранены", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Ошибка сохранения", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //}
                     });
                 }
                 return _saveToFileCommand;
@@ -215,8 +225,8 @@ namespace ComponentsApp.WPF.ViewModels
 
                         if (result != null)
                         {
-                            SamplePoint1 = result[0];
-                            SamplePoint2 = result[1];
+                            //SamplePoint1 = result[0];
+                            //SamplePoint2 = result[1];
                         }
                         else
                         {
@@ -232,20 +242,20 @@ namespace ComponentsApp.WPF.ViewModels
         internal MainWindowVm()
         {
             _fileService = new FileService();
-            _calculationService = new CalculationService();
+            _calculationService = new CalculationService();            
 
-            SamplePoint1 = new SamplePoint { Name = "ВГПП ПНГ Сепарация УВКС Е-1/1,2 – Варьеганское, Тагринское и Новоаганское месторождения" };
-            SamplePoint2 = new SamplePoint { Name = "ВГПП ПНГ Сепарация Узел №1 – Рославльское и Западно-Варьеганское месторождения" };
+            SamplePoint1 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2", SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения" };
+            SamplePoint2 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация Узел №1", SubHeader = "Рославльское и Западно-Варьеганское месторождения" };
 
-            SamplePoint1.Samples.Add(new Sample { SampleNumber = 1 });
-            SamplePoint1.Samples.Add(new Sample { SampleNumber = 2 });
-            SamplePoint1.Samples.Add(new Sample { SampleNumber = 3 });
-            SamplePoint1.Samples.Add(new Sample { SampleNumber = 4 });
+            SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 1 });
+            SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 2 });
+            SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 3 });
+            SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 4 });
 
-            SamplePoint2.Samples.Add(new Sample { SampleNumber = 1 });
-            SamplePoint2.Samples.Add(new Sample { SampleNumber = 2 });
-            SamplePoint2.Samples.Add(new Sample { SampleNumber = 3 });
-            SamplePoint2.Samples.Add(new Sample { SampleNumber = 4 });
+            SamplePoint2.Samples.Add(new SampleVm { SampleNumber = 1 });
+            SamplePoint2.Samples.Add(new SampleVm { SampleNumber = 2 });
+            SamplePoint2.Samples.Add(new SampleVm { SampleNumber = 3 });
+            SamplePoint2.Samples.Add(new SampleVm { SampleNumber = 4 });
         }
     }
 }

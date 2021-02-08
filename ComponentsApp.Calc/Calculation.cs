@@ -1,14 +1,13 @@
-﻿using ComponentsApp.WPF.Helpers;
-using ComponentsApp.WPF.Interfaces;
-using ComponentsApp.WPF.Models;
+﻿using ComponentsApp.Calc.Helpers;
+using ComponentsApp.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentsApp.WPF.Services
+namespace ComponentsApp.Calc
 {
-    public class CalculationService : ICalculationService
+    public class Calculation
     {
-        public double Calculate(SamplePoint point1, SamplePoint point2)
+        public void Calculate(SamplePoint point1, SamplePoint point2)
         {
             // Средние значения по каждой точке отбора
             var avgSample1 = GetAvgSample(point1.Samples);
@@ -29,14 +28,12 @@ namespace ComponentsApp.WPF.Services
             // Соотношение массы ПНГ
             var alpha = mass1 / (mass1 + mass2);
 
-            // Сумма компонентов C3+
+            // Сумма компонентов
             var compSumm1 = GetComponentsSumm(massSample1);
             var compSumm2 = GetComponentsSumm(massSample2);
 
             // Средневзвешенная массовая концентрация фракций углеводородов
             var wghtAvgConc = 10 * (alpha * density1 * compSumm1 + (1 - alpha) * density2 * compSumm2);
-
-            return wghtAvgConc;
         }
 
         private double CalcDensity(Sample sample)
@@ -52,7 +49,7 @@ namespace ComponentsApp.WPF.Services
                 sample.Hexane * CompConstants.Hexane +
                 sample.CarbonDioxide * CompConstants.CarbonDioxide +
                 sample.Oxygen * CompConstants.Oxigen +
-                sample.Nitrogen * CompConstants.Nitrogen) / 100;
+                sample.Nitrogen * CompConstants.Nitrogen) /100;
 
             return totalComponentsMass / 23.9;
         }
@@ -92,9 +89,6 @@ namespace ComponentsApp.WPF.Services
         {
             return new Sample
             {
-                Nitrogen = samples.Sum(s => s.Nitrogen) / samples.Count,
-                Oxygen = samples.Sum(s => s.Oxygen) / samples.Count,
-                CarbonDioxide = samples.Sum(s => s.CarbonDioxide) / samples.Count,
                 Methane = samples.Sum(s => s.Methane) / samples.Count,
                 Ethane = samples.Sum(s => s.Ethane) / samples.Count,
                 Propane = samples.Sum(s => s.Propane) / samples.Count,
@@ -107,13 +101,17 @@ namespace ComponentsApp.WPF.Services
             };
         }
 
-        private double GetComponentsSumm(Sample sample) =>
+        private double GetComponentsSumm(Sample sample)=> 
+                sample.Methane +
+                sample.Ethane +
                 sample.Propane +
                 sample.Isobutane +
                 sample.Butane +
                 sample.Isopentane +
                 sample.Pentane +
-                sample.Hexane;
+                sample.Hexane +
+                sample.Oxygen +
+                sample.Nitrogen +
+                sample.CarbonDioxide;      
     }
 }
-
