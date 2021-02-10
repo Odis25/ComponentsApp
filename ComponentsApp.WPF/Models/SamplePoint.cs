@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ComponentsApp.WPF.Models
+namespace ComponentsApp.UI.Models
 {
     [Serializable]
     public class SamplePoint

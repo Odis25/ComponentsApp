@@ -1,7 +1,7 @@
 ﻿
-using ComponentsApp.WPF.ViewModels.Base;
+using ComponentsApp.UI.ViewModels.Base;
 
-namespace ComponentsApp.WPF.Models
+namespace ComponentsApp.UI.Models
 {
     public class Sample : ViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace ComponentsApp.WPF.Models
+﻿namespace ComponentsApp.UI.Models
 {
     public class ComponentsQuantityTable
     {

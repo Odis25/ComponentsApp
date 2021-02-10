@@ -1,14 +1,14 @@
-﻿using ComponentsApp.UI.Infrastructure.Commands.Base;
-using ComponentsApp.UI.Interfaces;
-using ComponentsApp.UI.Models;
-using ComponentsApp.UI.Services;
-using ComponentsApp.UI.ViewModels.Base;
+﻿using ComponentsApp.Data.Common;
+using ComponentsApp.Data.Models;
+using ComponentsApp.Services.Interfaces;
+using ComponentsApp.Services.Services;
+using ComponentsApp.UI.Infrastructure.Commands.Base;
 using System.Linq;
 using System.Windows;
 
 namespace ComponentsApp.UI.ViewModels
 {
-    internal class MainWindowVm : ViewModel
+    internal class MainWindowVm : BaseModel
     {
         #region Поля
         private readonly IFileService _fileService;
@@ -163,13 +163,13 @@ namespace ComponentsApp.UI.ViewModels
                         {
                             var samplePoint1 = new SamplePoint
                             {
-                                Samples = SamplePoint1.Samples.Select(s => s.Sample).ToList(),
+                                Samples = SamplePoint1.Samples.Select(s => s.Sample).ToHashSet(),
                                 Volume = SamplePoint1.Volume
                             };
 
                             var samplePoint2 = new SamplePoint
                             {
-                                Samples = SamplePoint2.Samples.Select(s => s.Sample).ToList(),
+                                Samples = SamplePoint2.Samples.Select(s => s.Sample).ToHashSet(),
                                 Volume = SamplePoint2.Volume
                             };
 
@@ -241,7 +241,7 @@ namespace ComponentsApp.UI.ViewModels
         internal MainWindowVm()
         {
             _fileService = new FileService();
-            _calculationService = new CalculationService();            
+            _calculationService = new CalculationService();
 
             SamplePoint1 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2", SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения" };
             SamplePoint2 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация Узел №1", SubHeader = "Рославльское и Западно-Варьеганское месторождения" };

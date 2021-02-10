@@ -1,22 +1,15 @@
-﻿using ComponentsApp.UI.Infrastructure.Commands.Base;
-using ComponentsApp.UI.Interfaces;
-using ComponentsApp.UI.Models;
-using ComponentsApp.UI.Services;
-using ComponentsApp.UI.ViewModels.Base;
+﻿using ComponentsApp.Data.Common;
+using ComponentsApp.Services.Interfaces;
+using ComponentsApp.UI.Infrastructure.Commands.Base;
 using Microsoft.Win32;
 
 namespace ComponentsApp.UI.ViewModels
 {
-    internal class ResultWindowVm : ViewModel
+    internal class ResultWindowVm : BaseModel
     {
-        private ResultData _resultData;
         private RelayCommand _saveToPdfCommand;
 
-        public ResultData ResultData
-        {
-            get { return _resultData; }
-            set { _resultData = value; }
-        }
+        //public ResultData ResultData{ get; set; }
 
         public RelayCommand SaveToPdfCommand
         {
@@ -31,8 +24,8 @@ namespace ComponentsApp.UI.ViewModels
                         sfd.Title = "Save an Pdf File";
                         if (sfd.ShowDialog() == true)
                         {
-                            IFileService fileService = new FileService();
-                            fileService.SaveToPdf(ResultData, sfd.FileName);
+                            //IFileService fileService = new FileService();
+                            //fileService.SaveToPdf(ResultData, sfd.FileName);
                         }
                     });
                 }

@@ -1,10 +1,10 @@
-﻿using ComponentsApp.UI.Models;
-using ComponentsApp.UI.ViewModels.Base;
+﻿using ComponentsApp.Data.Common;
+using ComponentsApp.Data.Models;
 using System.ComponentModel;
 
 namespace ComponentsApp.UI.ViewModels
 {
-    public class SampleVm : ViewModel
+    public class SampleVm : BaseModel
     {
         public int SampleNumber { get; set; }
         public Sample Sample { get; set; }
@@ -16,7 +16,7 @@ namespace ComponentsApp.UI.ViewModels
             + Sample.Isobutane
             + Sample.Butane
             + Sample.Isopentane
-            + Sample.Pentane 
+            + Sample.Pentane
             + Sample.Hexane
             + Sample.Nitrogen
             + Sample.Oxygen

@@ -1,10 +1,10 @@
-﻿using ComponentsApp.UI.Models;
+﻿using ComponentsApp.Data.Models;
 
-namespace ComponentsApp.UI.Interfaces
+namespace ComponentsApp.Services.Interfaces
 {
     public interface IFileService
     {
-        void SaveToPdf(ResultData data, string filePath);
+        //void SaveToPdf(ResultData data, string filePath);
 
         bool SaveSamples(SamplePoint[] samplePoints);
         SamplePoint[] LoadSamples();

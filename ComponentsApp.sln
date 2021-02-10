@@ -10,7 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsApp.WPF", "Compon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentsApp.Data", "ComponentsApp.Data\ComponentsApp.Data.csproj", "{24089E53-9932-45E4-A819-DF9E7EA7CFAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsApp.Calc", "ComponentsApp.Calc\ComponentsApp.Calc.csproj", "{2C776B52-A3CB-436F-9F6C-10B38207FD1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentsApp.Services", "ComponentsApp.Calc\ComponentsApp.Services.csproj", "{2C776B52-A3CB-436F-9F6C-10B38207FD1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsApp.UI", "ComponentsApp.UI\ComponentsApp.UI.csproj", "{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,14 @@ Global
 		{2C776B52-A3CB-436F-9F6C-10B38207FD1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C776B52-A3CB-436F-9F6C-10B38207FD1D}.Release|x64.ActiveCfg = Release|Any CPU
 		{2C776B52-A3CB-436F-9F6C-10B38207FD1D}.Release|x64.Build.0 = Release|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

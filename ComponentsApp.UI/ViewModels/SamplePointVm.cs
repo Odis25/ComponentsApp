@@ -1,9 +1,9 @@
-﻿using ComponentsApp.UI.ViewModels.Base;
+﻿using ComponentsApp.Data.Common;
 using System.Collections.ObjectModel;
 
 namespace ComponentsApp.UI.ViewModels
 {
-    public class SamplePointVm : ViewModel
+    public class SamplePointVm : BaseModel
     {
         public string Header { get; set; }
         public string SubHeader { get; set; }

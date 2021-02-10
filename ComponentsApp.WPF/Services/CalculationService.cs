@@ -1,10 +1,10 @@
-﻿using ComponentsApp.WPF.Helpers;
-using ComponentsApp.WPF.Interfaces;
-using ComponentsApp.WPF.Models;
+﻿using ComponentsApp.UI.Helpers;
+using ComponentsApp.UI.Interfaces;
+using ComponentsApp.UI.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentsApp.WPF.Services
+namespace ComponentsApp.UI.Services
 {
     public class CalculationService : ICalculationService
     {

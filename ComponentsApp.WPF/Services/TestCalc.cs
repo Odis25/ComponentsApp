@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentsApp.WPF.Services
+namespace ComponentsApp.UI.Services
 {
     class TestCalc
     {

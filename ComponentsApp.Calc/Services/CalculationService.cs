@@ -1,13 +1,14 @@
-﻿using ComponentsApp.Calc.Helpers;
+﻿using ComponentsApp.Data.Constants;
 using ComponentsApp.Data.Models;
+using ComponentsApp.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentsApp.Calc
+namespace ComponentsApp.Services.Services
 {
-    public class Calculation
+    public class CalculationService : ICalculationService
     {
-        public void Calculate(SamplePoint point1, SamplePoint point2)
+        public double Calculate(SamplePoint point1, SamplePoint point2)
         {
             // Средние значения по каждой точке отбора
             var avgSample1 = GetAvgSample(point1.Samples);
@@ -33,7 +34,9 @@ namespace ComponentsApp.Calc
             var compSumm2 = GetComponentsSumm(massSample2);
 
             // Средневзвешенная массовая концентрация фракций углеводородов
-            var wghtAvgConc = 10 * (alpha * density1 * compSumm1 + (1 - alpha) * density2 * compSumm2);
+            var result = 10 * (alpha * density1 * compSumm1 + (1 - alpha) * density2 * compSumm2);
+
+            return result;
         }
 
         private double CalcDensity(Sample sample)
@@ -49,7 +52,7 @@ namespace ComponentsApp.Calc
                 sample.Hexane * CompConstants.Hexane +
                 sample.CarbonDioxide * CompConstants.CarbonDioxide +
                 sample.Oxygen * CompConstants.Oxigen +
-                sample.Nitrogen * CompConstants.Nitrogen) /100;
+                sample.Nitrogen * CompConstants.Nitrogen) / 100;
 
             return totalComponentsMass / 23.9;
         }
@@ -70,17 +73,17 @@ namespace ComponentsApp.Calc
                 sample.Oxygen * CompConstants.Oxigen +
                 sample.Nitrogen * CompConstants.Nitrogen;
 
-            result.Methane = (100 * sample.Methane * CompConstants.Methane) / summary;
-            result.Ethane = (100 * sample.Ethane * CompConstants.Ethane) / summary;
-            result.Propane = (100 * sample.Propane * CompConstants.Propane) / summary;
-            result.Isobutane = (100 * sample.Isobutane * CompConstants.Isobutane) / summary;
-            result.Butane = (100 * sample.Butane * CompConstants.Butane) / summary;
-            result.Isopentane = (100 * sample.Isopentane * CompConstants.Isopentane) / summary;
-            result.Pentane = (100 * sample.Pentane * CompConstants.Pentane) / summary;
-            result.Hexane = (100 * sample.Hexane * CompConstants.Hexane) / summary;
-            result.CarbonDioxide = (100 * sample.CarbonDioxide * CompConstants.CarbonDioxide) / summary;
-            result.Oxygen = (100 * sample.Oxygen * CompConstants.Oxigen) / summary;
-            result.Nitrogen = (100 * sample.Nitrogen * CompConstants.Nitrogen) / summary;
+            result.Methane = 100 * sample.Methane * CompConstants.Methane / summary;
+            result.Ethane = 100 * sample.Ethane * CompConstants.Ethane / summary;
+            result.Propane = 100 * sample.Propane * CompConstants.Propane / summary;
+            result.Isobutane = 100 * sample.Isobutane * CompConstants.Isobutane / summary;
+            result.Butane = 100 * sample.Butane * CompConstants.Butane / summary;
+            result.Isopentane = 100 * sample.Isopentane * CompConstants.Isopentane / summary;
+            result.Pentane = 100 * sample.Pentane * CompConstants.Pentane / summary;
+            result.Hexane = 100 * sample.Hexane * CompConstants.Hexane / summary;
+            result.CarbonDioxide = 100 * sample.CarbonDioxide * CompConstants.CarbonDioxide / summary;
+            result.Oxygen = 100 * sample.Oxygen * CompConstants.Oxigen / summary;
+            result.Nitrogen = 100 * sample.Nitrogen * CompConstants.Nitrogen / summary;
 
             return result;
         }
@@ -101,7 +104,7 @@ namespace ComponentsApp.Calc
             };
         }
 
-        private double GetComponentsSumm(Sample sample)=> 
+        private double GetComponentsSumm(Sample sample) =>
                 sample.Methane +
                 sample.Ethane +
                 sample.Propane +
@@ -112,6 +115,6 @@ namespace ComponentsApp.Calc
                 sample.Hexane +
                 sample.Oxygen +
                 sample.Nitrogen +
-                sample.CarbonDioxide;      
+                sample.CarbonDioxide;
     }
 }

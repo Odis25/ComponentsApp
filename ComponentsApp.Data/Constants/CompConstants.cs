@@ -1,4 +1,4 @@
-﻿namespace ComponentsApp.Calc.Helpers
+﻿namespace ComponentsApp.Data.Constants
 {
     public static class CompConstants
     {

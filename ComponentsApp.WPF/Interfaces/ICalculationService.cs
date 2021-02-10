@@ -1,6 +1,6 @@
-﻿using ComponentsApp.WPF.Models;
+﻿using ComponentsApp.UI.Models;
 
-namespace ComponentsApp.WPF.Interfaces
+namespace ComponentsApp.UI.Interfaces
 {
     public interface ICalculationService
     {

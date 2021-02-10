@@ -1,7 +1,7 @@
-﻿using ComponentsApp.WPF.ViewModels;
+﻿using ComponentsApp.UI.ViewModels;
 using MaterialDesignExtensions.Controls;
 
-namespace ComponentsApp.WPF.Views
+namespace ComponentsApp.UI.Views
 {
     /// <summary>
     /// Логика взаимодействия для ResultWindow.xaml

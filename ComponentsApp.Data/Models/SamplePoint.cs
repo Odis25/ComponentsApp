@@ -1,22 +1,10 @@
-﻿using ComponentsApp.Data.Common;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 namespace ComponentsApp.Data.Models
 {
-    public class SamplePoint : BaseModel
+    public class SamplePoint
     {
-        private double _volume;
-        private ObservableCollection<Sample> _samples;
-
-        public ObservableCollection<Sample> Samples
-        {
-            get => _samples;
-            set => Set(ref _samples, value);
-        }
-        public double Volume
-        {
-            get => _volume;
-            set => Set(ref _volume, value);
-        }
+        public ICollection<Sample> Samples { get; set; }
+        public double Volume { get; set; }
     }
 }

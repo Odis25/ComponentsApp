@@ -1,15 +1,14 @@
-﻿using ComponentsApp.WPF.Interfaces;
-using ComponentsApp.WPF.Models;
+﻿using ComponentsApp.UI.Interfaces;
+using ComponentsApp.UI.Models;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace ComponentsApp.WPF.Services
+namespace ComponentsApp.UI.Services
 {
     public class FileService : IFileService
     {
