@@ -1,7 +1,6 @@
 ﻿using ComponentsApp.Data.Common;
 using ComponentsApp.Data.Models;
 using ComponentsApp.Services.Interfaces;
-using ComponentsApp.Services.Services;
 using ComponentsApp.UI.Infrastructure.Commands.Base;
 using Microsoft.Win32;
 using System;
@@ -10,8 +9,14 @@ namespace ComponentsApp.UI.ViewModels
 {
     internal class ResultWindowVm : BaseModel
     {
+        public ResultWindowVm(IFileService fileService)
+        {
+            _fileService = fileService;
+        }
+
         #region Поля
 
+        private readonly IFileService _fileService;
         private RelayCommand _saveToPdfCommand;
 
         #endregion
@@ -21,7 +26,6 @@ namespace ComponentsApp.UI.ViewModels
         public Result Result { get; set; }
 
         #endregion
-
 
         #region Комманды
 
@@ -42,8 +46,7 @@ namespace ComponentsApp.UI.ViewModels
 
                         if (sfd.ShowDialog() == true)
                         {
-                            IFileService fileService = new FileService();
-                            fileService.SaveToPdf(Result, sfd.FileName);
+                            _fileService.SaveToPdf(Result, sfd.FileName);
                         }
                     });
                 }

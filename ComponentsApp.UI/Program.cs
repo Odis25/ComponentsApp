@@ -13,11 +13,8 @@ namespace ComponentsApp.UI
             app.Run();
         }
 
-        public static IHost CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureServices(App.ConfigureServices)
-                .Build();
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args)=>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices(App.ConfigureServices);       
     }
 }

@@ -5,12 +5,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModels="clr-namespace:ComponentsApp.UI.ViewModels" x:Class="ComponentsApp.UI.Views.ResultWindow"
+        xmlns:ViewModels="clr-namespace:ComponentsApp.UI.ViewModels" 
+        x:Class="ComponentsApp.UI.Views.ResultWindow"
         mc:Ignorable="d"
-        Title="Результаты расчета" MinHeight="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Height">
-    <mde:MaterialWindow.DataContext>
+        Title="Результаты расчета" MinHeight="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Height"
+        DataContext="{Binding ResultWindowVm, Source={StaticResource Locator}}">
+    <!--<mde:MaterialWindow.DataContext>
         <ViewModels:ResultWindowVm/>
-    </mde:MaterialWindow.DataContext>
+    </mde:MaterialWindow.DataContext>-->
     
     <mde:MaterialWindow.Resources>
         <Style x:Key="tableHeaderCell" TargetType="Label">

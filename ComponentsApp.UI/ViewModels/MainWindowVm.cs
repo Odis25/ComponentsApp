@@ -194,6 +194,7 @@ namespace ComponentsApp.UI.ViewModels
 
                             ResultWindowVm.Result = _calculationService.Calculate(samplePoint1, samplePoint2, InputDensity);
 
+                            
                             var resultWindow = new ResultWindow { DataContext = ResultWindowVm };
 
                             resultWindow.ShowDialog();
@@ -241,7 +242,7 @@ namespace ComponentsApp.UI.ViewModels
                 {
                     _loadFromFileCommand = new RelayCommand(async obj =>
                     {
-                        var result = (await _fileService.LoadDataAsync()).ToArray();
+                        var result = (await _fileService.LoadDataAsync())?.ToArray();
 
                         if (result != null)
                         {
@@ -274,12 +275,15 @@ namespace ComponentsApp.UI.ViewModels
         }
         #endregion
 
-        public MainWindowVm(ResultWindowVm resultWindowVm)
+        public MainWindowVm(
+            ResultWindowVm resultWindowVm, 
+            IFileService fileService, 
+            ICalculationService calculationService)
         {
             ResultWindowVm = resultWindowVm;
 
-            _fileService = new FileService();
-            _calculationService = new CalculationService();
+            _fileService = fileService;
+            _calculationService = calculationService;
 
             SamplePoint1 = new SamplePointVm
             {

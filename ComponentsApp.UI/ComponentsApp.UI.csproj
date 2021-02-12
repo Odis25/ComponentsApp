@@ -5,6 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>ComponentsApp.UI.Program</StartupObject>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon>Calculator.ico</ApplicationIcon>
+    <AssemblyName>ComponentsApp</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
