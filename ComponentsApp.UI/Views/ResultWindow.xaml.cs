@@ -1,5 +1,4 @@
-﻿using ComponentsApp.UI.ViewModels;
-using MaterialDesignExtensions.Controls;
+﻿using MaterialDesignExtensions.Controls;
 
 namespace ComponentsApp.UI.Views
 {
@@ -11,8 +10,6 @@ namespace ComponentsApp.UI.Views
         public ResultWindow()
         {
             InitializeComponent();
-
-            DataContext = new ResultWindowVm();
         }
     }
 }

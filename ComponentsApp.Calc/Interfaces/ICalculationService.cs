@@ -4,6 +4,6 @@ namespace ComponentsApp.Services.Interfaces
 {
     public interface ICalculationService
     {
-        double Calculate(SamplePoint point1, SamplePoint point2);
+        Result Calculate(SamplePoint point1, SamplePoint point2);
     }
 }

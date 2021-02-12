@@ -1,7 +1,10 @@
 ﻿using ComponentsApp.Data.Common;
+using ComponentsApp.Data.Models;
 using ComponentsApp.Services.Interfaces;
+using ComponentsApp.Services.Services;
 using ComponentsApp.UI.Infrastructure.Commands.Base;
 using Microsoft.Win32;
+using System;
 
 namespace ComponentsApp.UI.ViewModels
 {
@@ -9,7 +12,7 @@ namespace ComponentsApp.UI.ViewModels
     {
         private RelayCommand _saveToPdfCommand;
 
-        //public ResultData ResultData{ get; set; }
+        public Result Result { get; set; }
 
         public RelayCommand SaveToPdfCommand
         {
@@ -19,13 +22,17 @@ namespace ComponentsApp.UI.ViewModels
                 {
                     _saveToPdfCommand = new RelayCommand(obj =>
                     {
-                        SaveFileDialog sfd = new SaveFileDialog();
-                        sfd.Filter = "Pdf Document|*.pdf";
-                        sfd.Title = "Save an Pdf File";
+                        var sfd = new SaveFileDialog
+                        {
+                            Filter = "Pdf Document|*.pdf",
+                            Title = "Save an PDF File",
+                            FileName = $"Протокол расчета {DateTime.Now.ToShortDateString()}.pdf"
+                        };
+
                         if (sfd.ShowDialog() == true)
                         {
-                            //IFileService fileService = new FileService();
-                            //fileService.SaveToPdf(ResultData, sfd.FileName);
+                            IFileService fileService = new FileService();
+                            fileService.SaveToPdf(Result, sfd.FileName);
                         }
                     });
                 }

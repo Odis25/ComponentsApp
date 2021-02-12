@@ -1,12 +1,14 @@
 ﻿using ComponentsApp.Data.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ComponentsApp.Services.Interfaces
 {
     public interface IFileService
     {
-        //void SaveToPdf(ResultData data, string filePath);
+        void SaveToPdf(Result data, string filePath);
 
-        bool SaveSamples(SamplePoint[] samplePoints);
-        SamplePoint[] LoadSamples();
+        Task<bool> SaveDataAsync(IEnumerable<SamplePoint> samplePoints);
+        Task<IEnumerable<SamplePoint>> LoadDataAsync();
     }
 }

@@ -1,11 +1,10 @@
-﻿using ComponentsApp.UI.Views;
-using MaterialDesignExtensions.Controls;
+﻿using MaterialDesignExtensions.Controls;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ComponentsApp.UI
+namespace ComponentsApp.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

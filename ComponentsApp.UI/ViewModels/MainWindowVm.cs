@@ -3,6 +3,9 @@ using ComponentsApp.Data.Models;
 using ComponentsApp.Services.Interfaces;
 using ComponentsApp.Services.Services;
 using ComponentsApp.UI.Infrastructure.Commands.Base;
+using ComponentsApp.UI.Views;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
@@ -175,12 +178,12 @@ namespace ComponentsApp.UI.ViewModels
 
                             var result = _calculationService.Calculate(samplePoint1, samplePoint2);
 
-                            //var resultWindow = new ResultWindow
-                            //{
-                            //    DataContext = new ResultWindowVm { ResultData = result }
-                            //};
+                            var resultWindow = new ResultWindow
+                            {
+                                DataContext = new ResultWindowVm { Result = result }
+                            };
 
-                            //resultWindow.ShowDialog();
+                            resultWindow.ShowDialog();
                         }
                     });
                 }
@@ -194,18 +197,23 @@ namespace ComponentsApp.UI.ViewModels
             {
                 if (_saveToFileCommand == null)
                 {
-                    _saveToFileCommand = new RelayCommand(obj =>
+                    _saveToFileCommand = new RelayCommand(async obj =>
                     {
-                        //var result = _fileService.SaveSamples(new SamplePoint[] { SamplePoint1, SamplePoint2 });
+                        var data = new List<SamplePoint> 
+                        {
+                            new SamplePoint{ Samples = SamplePoint1.Samples.Select(s=> s.Sample).ToHashSet(), Volume = SamplePoint1.Volume },
+                            new SamplePoint{ Samples = SamplePoint2.Samples.Select(s=> s.Sample).ToHashSet(), Volume = SamplePoint2.Volume },
+                        };
+                        var result = await _fileService.SaveDataAsync(data);
 
-                        //if (result)
-                        //{
-                        //    MessageBox.Show("Данные успешно сохранены", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Ошибка сохранения", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Error);
-                        //}
+                        if (result)
+                        {
+                            MessageBox.Show("Данные успешно сохранены", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка сохранения", "Сохранение данных", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     });
                 }
                 return _saveToFileCommand;
@@ -218,14 +226,29 @@ namespace ComponentsApp.UI.ViewModels
             {
                 if (_loadFromFileCommand == null)
                 {
-                    _loadFromFileCommand = new RelayCommand(obj =>
+                    _loadFromFileCommand = new RelayCommand(async obj =>
                     {
-                        var result = _fileService.LoadSamples();
+                        var result = (await _fileService.LoadDataAsync()).ToArray();                       
 
                         if (result != null)
                         {
-                            //SamplePoint1 = result[0];
-                            //SamplePoint2 = result[1];
+                            var samples1 = new List<SampleVm>();
+                            foreach (var sample in result[0].Samples)
+                            {
+                                samples1.Add(new SampleVm { Sample = sample, SampleNumber = samples1.Count + 1 });
+                            }
+
+                            var samples2 = new List<SampleVm>();
+                            foreach (var sample in result[1].Samples)
+                            {
+                                samples2.Add(new SampleVm { Sample = sample, SampleNumber = samples2.Count + 1 });
+                            }
+
+                            SamplePoint1.Volume = result[0].Volume;
+                            SamplePoint1.Samples = new ObservableCollection<SampleVm>(samples1);
+
+                            SamplePoint2.Volume = result[1].Volume;
+                            SamplePoint2.Samples = new ObservableCollection<SampleVm>(samples2);
                         }
                         else
                         {
@@ -238,13 +261,22 @@ namespace ComponentsApp.UI.ViewModels
         }
         #endregion
 
-        internal MainWindowVm()
+        public MainWindowVm()
         {
             _fileService = new FileService();
             _calculationService = new CalculationService();
 
-            SamplePoint1 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2", SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения" };
-            SamplePoint2 = new SamplePointVm { Header = "ВГПП ПНГ Сепарация Узел №1", SubHeader = "Рославльское и Западно-Варьеганское месторождения" };
+            SamplePoint1 = new SamplePointVm 
+            { 
+                Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2", 
+                SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения"           
+            };
+
+            SamplePoint2 = new SamplePointVm 
+            { 
+                Header = "ВГПП ПНГ Сепарация Узел №1", 
+                SubHeader = "Рославльское и Западно-Варьеганское месторождения" 
+            };
 
             SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 1 });
             SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 2 });
