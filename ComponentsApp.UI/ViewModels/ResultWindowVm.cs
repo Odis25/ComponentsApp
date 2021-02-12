@@ -10,9 +10,20 @@ namespace ComponentsApp.UI.ViewModels
 {
     internal class ResultWindowVm : BaseModel
     {
+        #region Поля
+
         private RelayCommand _saveToPdfCommand;
 
+        #endregion
+
+        #region Свойства
+
         public Result Result { get; set; }
+
+        #endregion
+
+
+        #region Комманды
 
         public RelayCommand SaveToPdfCommand
         {
@@ -39,5 +50,7 @@ namespace ComponentsApp.UI.ViewModels
                 return _saveToPdfCommand;
             }
         }
+
+        #endregion
     }
 }

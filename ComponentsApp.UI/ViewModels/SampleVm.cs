@@ -6,8 +6,18 @@ namespace ComponentsApp.UI.ViewModels
 {
     public class SampleVm : BaseModel
     {
+        private Sample _sample;
         public int SampleNumber { get; set; }
-        public Sample Sample { get; set; }
+        public Sample Sample
+        {
+            get => _sample;
+            set
+            {
+                Set(ref _sample, value);
+                
+                _sample.PropertyChanged += SamplePropertyChanged;
+            }
+        }
 
         public decimal Summ => (decimal)
             (Sample.Methane

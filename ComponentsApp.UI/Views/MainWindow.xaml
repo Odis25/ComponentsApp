@@ -12,10 +12,9 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
-        FontFamily="Roboto" SizeToContent="Height">
-    <mde:MaterialWindow.DataContext>
-        <vm:MainWindowVm/>
-    </mde:MaterialWindow.DataContext>
+        FontFamily="Roboto" 
+        SizeToContent="Height"
+        DataContext="{Binding MainWindowVm, Source={StaticResource Locator}}">
 
     <mde:MaterialWindow.Resources>
            
@@ -110,7 +109,7 @@
                     <!--Панель проб-->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
                         <Border BorderBrush="DarkGray" BorderThickness="1">
-                            <ItemsControl ItemsSource="{Binding SamplePoint1.Samples}" Background="AliceBlue">
+                            <ItemsControl ItemsSource="{Binding SamplePoint1.Samples, Mode=TwoWay}" Background="AliceBlue">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal"/>

@@ -14,8 +14,10 @@ namespace ComponentsApp.UI.ViewModels
     internal class MainWindowVm : BaseModel
     {
         #region Поля
+
         private readonly IFileService _fileService;
         private readonly ICalculationService _calculationService;
+
         private bool _inputDensity;
 
         private SamplePointVm _samplePoint1;
@@ -52,6 +54,8 @@ namespace ComponentsApp.UI.ViewModels
             get => _samplePoint2;
             set => Set(ref _samplePoint2, value);
         }
+
+        private ResultWindowVm ResultWindowVm { get; }
         #endregion
 
         #region Комманды
@@ -163,7 +167,7 @@ namespace ComponentsApp.UI.ViewModels
                         else if (!SamplePoint2.Samples.All(s => s.Summ == 100.0m))
                         {
                             MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }    
+                        }
                         else
                         {
                             if (InputDensity)
@@ -188,12 +192,9 @@ namespace ComponentsApp.UI.ViewModels
                                 Volume = SamplePoint2.Volume
                             };
 
-                            var result = _calculationService.Calculate(samplePoint1, samplePoint2, InputDensity);
+                            ResultWindowVm.Result = _calculationService.Calculate(samplePoint1, samplePoint2, InputDensity);
 
-                            var resultWindow = new ResultWindow
-                            {
-                                DataContext = new ResultWindowVm { Result = result }
-                            };
+                            var resultWindow = new ResultWindow { DataContext = ResultWindowVm };
 
                             resultWindow.ShowDialog();
                         }
@@ -273,8 +274,10 @@ namespace ComponentsApp.UI.ViewModels
         }
         #endregion
 
-        public MainWindowVm()
+        public MainWindowVm(ResultWindowVm resultWindowVm)
         {
+            ResultWindowVm = resultWindowVm;
+
             _fileService = new FileService();
             _calculationService = new CalculationService();
 
