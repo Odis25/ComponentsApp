@@ -8,7 +8,7 @@ namespace ComponentsApp.Services.Services
 {
     public class CalculationService : ICalculationService
     {
-        public Result Calculate(SamplePoint point1, SamplePoint point2)
+        public Result Calculate(SamplePoint point1, SamplePoint point2, bool useDensity)
         {
             // Средние значения по каждой точке отбора
             var avgSample1 = GetAvgSample(point1.Samples.ToHashSet());
@@ -19,12 +19,12 @@ namespace ComponentsApp.Services.Services
             var massSample2 = GetMassSample(avgSample2);
 
             // Расчет плотности при ст.у.
-            var density1 = CalcDensity(avgSample1);
-            var density2 = CalcDensity(avgSample2);
+            var density1 = useDensity ? avgSample1.Density : CalcDensity(avgSample1);
+            var density2 = useDensity ? avgSample2.Density : CalcDensity(avgSample2);
 
             // Вычисление отобранной массы газа в точках отбора
-            var mass1 = point1.Volume * density1;
-            var mass2 = point1.Volume * density2;
+            var mass1 = point1.Volume * 1000 * density1;
+            var mass2 = point1.Volume * 1000 * density2;
 
             // Соотношение массы ПНГ
             var alpha = mass1 / (mass1 + mass2);
@@ -102,6 +102,9 @@ namespace ComponentsApp.Services.Services
         {
             return new Sample
             {
+                Nitrogen = samples.Sum(s => s.Nitrogen) / samples.Count,
+                CarbonDioxide = samples.Sum(s => s.CarbonDioxide) / samples.Count,
+                Oxygen = samples.Sum(s => s.Oxygen) / samples.Count,
                 Methane = samples.Sum(s => s.Methane) / samples.Count,
                 Ethane = samples.Sum(s => s.Ethane) / samples.Count,
                 Propane = samples.Sum(s => s.Propane) / samples.Count,

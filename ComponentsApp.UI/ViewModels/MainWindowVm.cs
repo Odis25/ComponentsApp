@@ -16,6 +16,7 @@ namespace ComponentsApp.UI.ViewModels
         #region Поля
         private readonly IFileService _fileService;
         private readonly ICalculationService _calculationService;
+        private bool _inputDensity;
 
         private SamplePointVm _samplePoint1;
         private SamplePointVm _samplePoint2;
@@ -31,6 +32,12 @@ namespace ComponentsApp.UI.ViewModels
         #endregion
 
         #region Свойства
+        // Вычислять плотность
+        public bool InputDensity
+        {
+            get => _inputDensity;
+            set => Set(ref _inputDensity, value);
+        }
 
         // Коллекция проб с точки отбора №1
         public SamplePointVm SamplePoint1
@@ -156,14 +163,19 @@ namespace ComponentsApp.UI.ViewModels
                         else if (!SamplePoint2.Samples.All(s => s.Summ == 100.0m))
                         {
                             MessageBox.Show("Сумма компонентов для каждой пробы в точке отбора №2 должна быть 100%.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                        //else if (SamplePoint1.Samples.Any(s => s.Sample.Density == 0) || 
-                        //SamplePoint2.Samples.Any(s => s.Sample.Density == 0))
-                        //{
-                        //    MessageBox.Show("Плотность каждой из проб должна быть больше 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        //}
+                        }    
                         else
                         {
+                            if (InputDensity)
+                            {
+                                if (SamplePoint1.Samples.Any(s => s.Sample.Density == 0) ||
+                                    SamplePoint2.Samples.Any(s => s.Sample.Density == 0))
+                                {
+                                    MessageBox.Show("Плотность каждой из проб должна быть больше 0.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return;
+                                }
+                            }
+
                             var samplePoint1 = new SamplePoint
                             {
                                 Samples = SamplePoint1.Samples.Select(s => s.Sample).ToHashSet(),
@@ -176,7 +188,7 @@ namespace ComponentsApp.UI.ViewModels
                                 Volume = SamplePoint2.Volume
                             };
 
-                            var result = _calculationService.Calculate(samplePoint1, samplePoint2);
+                            var result = _calculationService.Calculate(samplePoint1, samplePoint2, InputDensity);
 
                             var resultWindow = new ResultWindow
                             {
@@ -199,7 +211,7 @@ namespace ComponentsApp.UI.ViewModels
                 {
                     _saveToFileCommand = new RelayCommand(async obj =>
                     {
-                        var data = new List<SamplePoint> 
+                        var data = new List<SamplePoint>
                         {
                             new SamplePoint{ Samples = SamplePoint1.Samples.Select(s=> s.Sample).ToHashSet(), Volume = SamplePoint1.Volume },
                             new SamplePoint{ Samples = SamplePoint2.Samples.Select(s=> s.Sample).ToHashSet(), Volume = SamplePoint2.Volume },
@@ -228,7 +240,7 @@ namespace ComponentsApp.UI.ViewModels
                 {
                     _loadFromFileCommand = new RelayCommand(async obj =>
                     {
-                        var result = (await _fileService.LoadDataAsync()).ToArray();                       
+                        var result = (await _fileService.LoadDataAsync()).ToArray();
 
                         if (result != null)
                         {
@@ -266,16 +278,16 @@ namespace ComponentsApp.UI.ViewModels
             _fileService = new FileService();
             _calculationService = new CalculationService();
 
-            SamplePoint1 = new SamplePointVm 
-            { 
-                Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2", 
-                SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения"           
+            SamplePoint1 = new SamplePointVm
+            {
+                Header = "ВГПП ПНГ Сепарация УВКС Е-1/1,2",
+                SubHeader = "Варьеганское, Тагринское и Новоаганское месторождения"
             };
 
-            SamplePoint2 = new SamplePointVm 
-            { 
-                Header = "ВГПП ПНГ Сепарация Узел №1", 
-                SubHeader = "Рославльское и Западно-Варьеганское месторождения" 
+            SamplePoint2 = new SamplePointVm
+            {
+                Header = "ВГПП ПНГ Сепарация Узел №1",
+                SubHeader = "Рославльское и Западно-Варьеганское месторождения"
             };
 
             SamplePoint1.Samples.Add(new SampleVm { SampleNumber = 1 });

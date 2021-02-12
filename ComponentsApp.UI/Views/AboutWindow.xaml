@@ -34,7 +34,7 @@
             </Grid>
             <TextBlock Grid.Row="1" Margin="5,10" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Text="   Программа предназначена для расчета средневзвешенного содержания жидких фракций углеводородов в нефтяном ПНГ"></TextBlock>
             <StackPanel Grid.Row="2" Orientation="Vertical">
-                <TextBlock FontSize="14" Margin="10,0,0,0" HorizontalAlignment="Left" Text="Версия: 1.0.0"></TextBlock>
+                <TextBlock FontSize="14" Margin="10,0,0,0" HorizontalAlignment="Left" Text="Версия: 1.1.0"></TextBlock>
                 <TextBlock FontSize="14" Margin="10,0,0,0" HorizontalAlignment="Left" Text="Разработчик: ЗАО НИЦ «ИНКОМСИСТЕМ», 2020 г."></TextBlock>
                 <TextBlock FontSize="14" Margin="10,0,0,0" HorizontalAlignment="Left" Text="Адрес: Россия, г.Казань, ул. Восстания, 100."></TextBlock>
                 <TextBlock FontSize="14" Margin="10,0,0,0" HorizontalAlignment="Left" Text="Телефон: +8 (843) 212-50-10"></TextBlock>
