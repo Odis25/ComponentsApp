@@ -1,7 +1,7 @@
-﻿using ComponentsApp.Data.Common;
+﻿using ComponentsApp.Calculation.Interfaces;
+using ComponentsApp.Data.Common;
 using ComponentsApp.Data.Models;
 using ComponentsApp.Services.Interfaces;
-using ComponentsApp.Services.Services;
 using ComponentsApp.UI.Infrastructure.Commands.Base;
 using ComponentsApp.UI.Views;
 using System.Collections.Generic;

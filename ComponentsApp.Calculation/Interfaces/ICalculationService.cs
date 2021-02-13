@@ -1,6 +1,6 @@
 ﻿using ComponentsApp.Data.Models;
 
-namespace ComponentsApp.Services.Interfaces
+namespace ComponentsApp.Calculation.Interfaces
 {
     public interface ICalculationService
     {

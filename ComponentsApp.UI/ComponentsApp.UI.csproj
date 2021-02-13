@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ComponentsApp.Calculation\ComponentsApp.Calculation.csproj" />
     <ProjectReference Include="..\ComponentsApp.Calc\ComponentsApp.Services.csproj" />
     <ProjectReference Include="..\ComponentsApp.Data\ComponentsApp.Data.csproj" />
   </ItemGroup>

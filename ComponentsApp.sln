@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentsApp.Services", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentsApp.UI", "ComponentsApp.UI\ComponentsApp.UI.csproj", "{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsApp.Calculation", "ComponentsApp.Calculation\ComponentsApp.Calculation.csproj", "{65F65FB3-1A6C-4832-B178-3B837F8CECF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,14 @@ Global
 		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|x64.ActiveCfg = Release|Any CPU
 		{DD8A462E-5D7E-4167-9C1C-CCD9AA4622EE}.Release|x64.Build.0 = Release|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Debug|x64.Build.0 = Debug|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Release|x64.ActiveCfg = Release|Any CPU
+		{65F65FB3-1A6C-4832-B178-3B837F8CECF3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

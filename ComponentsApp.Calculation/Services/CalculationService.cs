@@ -1,10 +1,10 @@
-﻿using ComponentsApp.Data.Constants;
+﻿using ComponentsApp.Calculation.Interfaces;
+using ComponentsApp.Data.Constants;
 using ComponentsApp.Data.Models;
-using ComponentsApp.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentsApp.Services.Services
+namespace ComponentsApp.Calculation.Services
 {
     public class CalculationService : ICalculationService
     {
@@ -39,10 +39,10 @@ namespace ComponentsApp.Services.Services
             // Оформление результата
             var result = new Result
             {
-                SamplesCollection = new List<Sample> { massSample1, massSample2},
-                MassCollection = new List<double> { mass1, mass2},
-                DensityCollection = new List<double> { density1, density2},
-                ComponentsSummCollection = new List<double> { compSumm1, compSumm2},
+                SamplesCollection = new List<Sample> { massSample1, massSample2 },
+                MassCollection = new List<double> { mass1, mass2 },
+                DensityCollection = new List<double> { density1, density2 },
+                ComponentsSummCollection = new List<double> { compSumm1, compSumm2 },
                 WeightedAvgConc = wghtAvgConc
             };
 
