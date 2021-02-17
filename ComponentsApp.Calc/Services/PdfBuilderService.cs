@@ -200,7 +200,7 @@ namespace ComponentsApp.Services.Services
             paragraph.AddText("3. Плотность ПНГ при стандарных условиях");
             paragraph.Style = StyleNames.Heading1;
 
-            // Создаем таблицу "Молярная масса ПНГ"
+            // Создаем таблицу "Плотность при стандартных условиях"
             table = section.AddTable();
             table.Format.Alignment = ParagraphAlignment.Center;
             table.Rows.VerticalAlignment = VerticalAlignment.Center;
@@ -225,8 +225,8 @@ namespace ComponentsApp.Services.Services
             row.Cells[1].AddParagraph("2-я группа МР");
 
             row = table.AddRow();
-            row.Cells[0].AddParagraph(_data.DensityCollection[0].ToString("f3"));
-            row.Cells[1].AddParagraph(_data.DensityCollection[1].ToString("f3"));
+            row.Cells[0].AddParagraph(_data.DensityCollection[0].ToString("f5"));
+            row.Cells[1].AddParagraph(_data.DensityCollection[1].ToString("f5"));
 
             table.SetEdge(0, 0, table.Columns.Count, table.Rows.Count, Edge.Box, BorderStyle.Single, 0.75);
 
@@ -245,7 +245,7 @@ namespace ComponentsApp.Services.Services
             paragraph.Style = StyleNames.Normal;
 
             paragraph = section.AddParagraph();
-            paragraph.AddText($"Средневзвешенная массовая концентрация фракций углеводородов C3+высшие равна {_data.WeightedAvgConc:f3} г/моль");
+            paragraph.AddText($"Средневзвешенная массовая концентрация фракций углеводородов C3+высшие равна {_data.WeightedAvgConc:f2} г/моль");
             paragraph.Style = StyleNames.Normal;
         }
     }

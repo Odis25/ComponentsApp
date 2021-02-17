@@ -18,18 +18,22 @@ namespace ComponentsApp.Calculation.Services
             var massSample1 = GetMassSample(avgSample1);
             var massSample2 = GetMassSample(avgSample2);
 
+            // Молярная масса смеси ПНГ, г/моль
+            var molarMass1 = GetMolarMass(avgSample1);
+            var molarMass2 = GetMolarMass(avgSample2);
+
             // Расчет плотности при ст.у.
-            var density1 = useDensity ? avgSample1.Density : CalcDensity(avgSample1);
-            var density2 = useDensity ? avgSample2.Density : CalcDensity(avgSample2);
+            var density1 = useDensity ? avgSample1.Density : CalcDensity(molarMass1);
+            var density2 = useDensity ? avgSample2.Density : CalcDensity(molarMass2);
 
             // Вычисление отобранной массы газа в точках отбора
             var mass1 = point1.Volume * 1000 * density1;
-            var mass2 = point1.Volume * 1000 * density2;
+            var mass2 = point2.Volume * 1000 * density2;
 
             // Соотношение массы ПНГ
             var alpha = mass1 / (mass1 + mass2);
 
-            // Сумма компонентов
+            // Сумма компонентов C3+
             var compSumm1 = GetComponentsSumm(massSample1);
             var compSumm2 = GetComponentsSumm(massSample2);
 
@@ -40,7 +44,7 @@ namespace ComponentsApp.Calculation.Services
             var result = new Result
             {
                 SamplesCollection = new List<Sample> { massSample1, massSample2 },
-                MassCollection = new List<double> { mass1, mass2 },
+                MassCollection = new List<double> { molarMass1, molarMass2 },
                 DensityCollection = new List<double> { density1, density2 },
                 ComponentsSummCollection = new List<double> { compSumm1, compSumm2 },
                 WeightedAvgConc = wghtAvgConc
@@ -49,10 +53,9 @@ namespace ComponentsApp.Calculation.Services
             return result;
         }
 
-        private double CalcDensity(Sample sample)
+        private double GetMolarMass(Sample sample)
         {
-            var totalComponentsMass =
-                (sample.Methane * CompConstants.Methane +
+            return (sample.Methane * CompConstants.Methane +
                 sample.Ethane * CompConstants.Ethane +
                 sample.Propane * CompConstants.Propane +
                 sample.Isobutane * CompConstants.Isobutane +
@@ -63,9 +66,9 @@ namespace ComponentsApp.Calculation.Services
                 sample.CarbonDioxide * CompConstants.CarbonDioxide +
                 sample.Oxygen * CompConstants.Oxigen +
                 sample.Nitrogen * CompConstants.Nitrogen) / 100;
-
-            return totalComponentsMass / 23.9;
         }
+
+        private double CalcDensity(double molarMass) => molarMass / 23.9;
 
         private Sample GetMassSample(Sample sample)
         {

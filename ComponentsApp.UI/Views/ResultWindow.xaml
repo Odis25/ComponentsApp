@@ -10,10 +10,7 @@
         mc:Ignorable="d"
         Title="Результаты расчета" MinHeight="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Height"
         DataContext="{Binding ResultWindowVm, Source={StaticResource Locator}}">
-    <!--<mde:MaterialWindow.DataContext>
-        <ViewModels:ResultWindowVm/>
-    </mde:MaterialWindow.DataContext>-->
-    
+
     <mde:MaterialWindow.Resources>
         <Style x:Key="tableHeaderCell" TargetType="Label">
             <Setter Property="BorderBrush" Value="Black"></Setter>
@@ -184,8 +181,8 @@
             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource tableHeaderCell}" Content="1-я группа МР"/>
             <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource tableHeaderCell}" Content="2-я группа МР"/>
 
-            <Label Grid.Row="2" Grid.Column="0" BorderThickness="1" Style="{StaticResource tableCell}" Content="{Binding Result.DensityCollection[0]}"/>
-            <Label Grid.Row="2" Grid.Column="1" BorderThickness="1" Style="{StaticResource tableCell}" Content="{Binding Result.DensityCollection[1]}"/>
+            <Label Grid.Row="2" Grid.Column="0" ContentStringFormat="{}{0:f5}" BorderThickness="1" Style="{StaticResource tableCell}" Content="{Binding Result.DensityCollection[0]}"/>
+            <Label Grid.Row="2" Grid.Column="1" ContentStringFormat="{}{0:f5}" BorderThickness="1" Style="{StaticResource tableCell}" Content="{Binding Result.DensityCollection[1]}"/>
         </Grid>
         <Label FontSize="14"
                FontWeight="Bold"
@@ -200,7 +197,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label FontSize="14" Content="Средневзвешенная массовая концентрация фракций углеводородов С3+высшие равна "/>
-            <Label FontSize="14" FontWeight="Bold" Content="{Binding Result.WeightedAvgConc}" ContentStringFormat="{}{0:f3} г/м3"/>
+            <Label FontSize="14" FontWeight="Bold" Content="{Binding Result.WeightedAvgConc}" ContentStringFormat="{}{0:f2} г/м3"/>
         </StackPanel>
         <Button Style="{StaticResource MaterialDesignRaisedButton}" 
                 Command="{Binding SaveToPdfCommand}" 
